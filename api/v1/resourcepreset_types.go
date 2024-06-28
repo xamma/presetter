@@ -1,5 +1,5 @@
 /*
-Copyright 2024.
+Copyright 2024 Max Bickel.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package v1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/api/resource"
 )
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
@@ -28,8 +29,11 @@ type ResourcePresetSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of ResourcePreset. Edit resourcepreset_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	CPURequests resource.Quantity `json:"cpuRequests"`
+	CPULimits resource.Quantity `json:"cpuLimits"`
+	MemoryRequests resource.Quantity `json:"memoryRequests"`
+	MemoryLimits resource.Quantity `json:"memoryLimits"`
+
 }
 
 // ResourcePresetStatus defines the observed state of ResourcePreset
