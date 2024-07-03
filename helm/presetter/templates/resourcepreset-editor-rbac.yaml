@@ -1,0 +1,25 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "presetter.fullname" . }}-resourcepreset-editor-role
+  labels:
+  {{- include "presetter.labels" . | nindent 4 }}
+rules:
+- apiGroups:
+  - presetter.xamma.dev
+  resources:
+  - resourcepresets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - presetter.xamma.dev
+  resources:
+  - resourcepresets/status
+  verbs:
+  - get

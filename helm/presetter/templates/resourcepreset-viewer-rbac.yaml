@@ -1,0 +1,21 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "presetter.fullname" . }}-resourcepreset-viewer-role
+  labels:
+  {{- include "presetter.labels" . | nindent 4 }}
+rules:
+- apiGroups:
+  - presetter.xamma.dev
+  resources:
+  - resourcepresets
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - presetter.xamma.dev
+  resources:
+  - resourcepresets/status
+  verbs:
+  - get
