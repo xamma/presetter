@@ -4,10 +4,10 @@ metadata:
   labels:
     app.kubernetes.io/name: presetter
     app.kubernetes.io/managed-by: kustomize
-  name: resourcepreset-sample
+  name: minimal
   namespace: presets
 spec:
-  cpuRequests: "500m"
-  cpuLimits: "1"
-  memoryRequests: "1Gi"
-  memoryLimits: "2Gi"
+  cpuRequests: "200m"
+  cpuLimits: "500m"
+  memoryRequests: "400Mi"
+  memoryLimits: "1Gi"

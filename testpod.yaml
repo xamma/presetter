@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-test-pod
+  namespace: presets
+  labels:
+    app: nginx
+    presetter.xamma.dev/preset: "minimal"  # Beispiel-Label, das für deine Ressourcenvorgaben verwendet werden könnte
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    ports:
+    - containerPort: 80

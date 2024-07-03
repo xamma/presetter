@@ -17,8 +17,8 @@ limitations under the License.
 package v1
 
 import (
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/api/resource"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
@@ -29,11 +29,10 @@ type ResourcePresetSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	CPURequests resource.Quantity `json:"cpuRequests"`
-	CPULimits resource.Quantity `json:"cpuLimits"`
+	CPURequests    resource.Quantity `json:"cpuRequests"`
+	CPULimits      resource.Quantity `json:"cpuLimits"`
 	MemoryRequests resource.Quantity `json:"memoryRequests"`
-	MemoryLimits resource.Quantity `json:"memoryLimits"`
-
+	MemoryLimits   resource.Quantity `json:"memoryLimits"`
 }
 
 // ResourcePresetStatus defines the observed state of ResourcePreset
