@@ -37,6 +37,10 @@ type ResourcePresetReconciler struct {
 	Scheme *runtime.Scheme
 }
 
+// +kubebuilder:rbac:groups=apps,resources=deployments,verbs=list;watch;get;create;update;patch;delete
+// +kubebuilder:rbac:groups=presetter.xamma.dev,resources=resourcepresets,verbs=list;watch;get;create;update;patch;delete
+// +kubebuilder:rbac:groups="",resources=namespaces,verbs=list;watch;get
+
 // Reconcile is part of the main Kubernetes reconciliation loop which aims to
 // move the current state of the cluster closer to the desired state.
 func (r *ResourcePresetReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
@@ -62,7 +66,7 @@ func (r *ResourcePresetReconciler) Reconcile(ctx context.Context, req ctrl.Reque
 
 	// Fetch resourcepreset
 	preset := &presetterv1.ResourcePreset{}
-	if err := r.Get(ctx, types.NamespacedName{Name: presetName, Namespace: req.Namespace}, preset); err != nil {
+	if err := r.Get(ctx, types.NamespacedName{Name: presetName, Namespace: deployment.Namespace}, preset); err != nil {
 		logger.Error(err, "Unable to fetch ResourcePreset.")
 		return ctrl.Result{}, err
 	}
@@ -125,6 +129,6 @@ func (r *ResourcePresetReconciler) Reconcile(ctx context.Context, req ctrl.Reque
 // SetupWithManager sets up the controller with the Manager.
 func (r *ResourcePresetReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
-		For(&appsv1.Deployment{}). // watch DEPLOYMENTS
+		For(&appsv1.Deployment{}).
 		Complete(r)
 }

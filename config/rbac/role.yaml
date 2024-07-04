@@ -5,9 +5,17 @@ metadata:
   name: manager-role
 rules:
 - apiGroups:
-  - presetter.xamma.dev
+  - ""
   resources:
-  - resourcepresets
+  - namespaces
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - apps
+  resources:
+  - deployments
   verbs:
   - create
   - delete
@@ -19,14 +27,12 @@ rules:
 - apiGroups:
   - presetter.xamma.dev
   resources:
-  - resourcepresets/finalizers
+  - resourcepresets
   verbs:
-  - update
-- apiGroups:
-  - presetter.xamma.dev
-  resources:
-  - resourcepresets/status
-  verbs:
+  - create
+  - delete
   - get
+  - list
   - patch
   - update
+  - watch
