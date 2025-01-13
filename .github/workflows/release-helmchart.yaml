@@ -1,0 +1,28 @@
+name: Create Helm Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Release Helm Chart'
+        type: choice
+        options:
+        - create-release
+
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Helm Manifests
+        uses: actions/checkout@v4
+
+      - name: Create Helm Chart Release
+        uses: xamma/helm-release-action@v1.0.5
+        with:
+          chart-path: './helm/apikube'
+          github-token: ${{ secrets.MY_PAT }}
+          helm-repo: 'xamma/helm-charts'
+          helm-repo-folder: 'docs'
+          branch-name: 'master'
